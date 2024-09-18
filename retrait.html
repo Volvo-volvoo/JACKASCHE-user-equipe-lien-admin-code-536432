@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Retrait des Fonds</title>
+    <style>
+        body {
+            font-family: 'Verdana', sans-serif;
+            background: url('https://image.noelshack.com/fichiers/2024/38/3/1726658986-paiement-par-lien-1.png') no-repeat center center fixed; /* Remplacez par l'URL de votre image */
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            padding: 20px;
+            background-color: #007bff;
+            color: white;
+            margin: 0;
+            font-size: 2rem;
+        }
+        .form-container {
+            max-width: 450px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 1rem;
+            color: #333;
+        }
+        input {
+            width: calc(100% - 22px);
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 10px;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .error {
+            color: #dc3545;
+            font-size: 14px;
+            text-align: center;
+        }
+        .success {
+            color: #28a745;
+            font-size: 14px;
+            text-align: center;
+        }
+        h4 {
+            text-align: center;
+            color: #333;
+            font-size: 1rem;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>virements</h1>
+    <h4>Minimum de retrait 1000.00 XOF maximum de retrait 500000.00 XOF  Vous pouvez effectuer votre retrait de 8H10 à 20H10.</h4>
+
+    <div class="form-container">
+        <label for="amount">Montant à retirer</label>
+        <input type="number" id="amount" placeholder="Montant à retirer" min="1">
+
+        <label for="password">Mode de passe de retrait</label>
+        <input type="password" id="password" placeholder="Mode de passe de retrait">
+
+        <button onclick="submitWithdrawal()">Soumettre</button>
+
+        <p id="message" class="error"></p>
+    </div>
+
+    <script>
+        let withdrawals = JSON.parse(localStorage.getItem('withdrawals')) || [];
+        let currentBalance = 50;  // Par exemple, ton solde actuel est de 50 FCFA.
+
+        function submitWithdrawal() {
+            const amount = parseFloat(document.getElementById('amount').value);
+            const password = document.getElementById('password').value;
+            const messageElement = document.getElementById('message');
+
+            if (!amount || !password) {
+                messageElement.textContent = "Veuillez remplir tous les champs.";
+                messageElement.className = "error";
+                return;
+            }
+
+            if (amount > currentBalance) {
+                // Solde insuffisant
+                messageElement.textContent = "Solde insuffisant.";
+                messageElement.className = "error";
+                addWithdrawal(amount, "Rejeté");
+            } else {
+                // Retrait accepté
+                currentBalance -= amount;
+                messageElement.className = "success";
+                messageElement.textContent = "Retrait soumis avec succès.";
+                addWithdrawal(amount, "En attente");
+            }
+        }
+
+        function addWithdrawal(amount, status) {
+            const withdrawal = {
+                amount: amount,
+                date: new Date().toLocaleString(),
+                status: status
+            };
+            withdrawals.push(withdrawal);
+            localStorage.setItem('withdrawals', JSON.stringify(withdrawals));
+        }
+    </script>
+</body>
+</html>

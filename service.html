@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Service Client</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            overflow-x: hidden; /* Désactive le défilement horizontal */
+        }
+        .header {
+            background: #17a2b8; /* Couleur d'arrière-plan pour la section du haut */
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 1.2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+        .background {
+            background-image: url('https://image.noelshack.com/fichiers/2024/38/3/1726664075-images-2.png'); /* Remplacez par le chemin de votre image */
+            background-size: cover;
+            background-position: center;
+            height: calc(100% - 60px); /* Ajustez la hauteur pour laisser de la place à l'en-tête fixe */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-top: 60px; /* Laisser de l'espace en haut pour l'en-tête fixe */
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.9); /* Blanc avec transparence */
+            border-radius: 10px;
+            padding: 20px;
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            font-size: 1.8rem;
+            color: #333;
+        }
+        p {
+            font-size: 1rem;
+            color: #555;
+            margin: 20px 0;
+        }
+        .telegram-logo {
+            margin-top: 20px;
+        }
+        .telegram-logo img {
+            width: 50px; /* Taille de l'icône Telegram */
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        Avez-vous besoin d'aide ? Le responsable est disponible de 8H10 à 20H10
+    </div>
+    <div class="background">
+        <div class="container">
+            <h1>Bienvenue sur notre plateforme</h1>
+            <p>Découvrez un service de qualité et une expérience utilisateur optimisée. Notre plateforme vous offre des solutions innovantes pour vos besoins quotidiens. Nous sommes là pour vous aider à chaque étape.</p>
+            <p>Veuillez écrire ✍️</p>
+            <div class="telegram-logo">
+                <a href="https://t.me/Jackasche" target="_blank">
+                    <img src="https://image.noelshack.com/fichiers/2024/38/3/1726663566-images-8.jpeg
+" alt="Logo Telegram"> <!-- Remplacez par le chemin de votre logo -->
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
